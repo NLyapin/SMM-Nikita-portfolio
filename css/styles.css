@@ -1,0 +1,1500 @@
+/* ===== FONT FACES ===== */
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ST Sans';
+    src: url('../fonts/st-sans/STSansTrial-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BaystarScript';
+    src: url('../fonts/BaystarScriptMedium-PERSONAL_USE_ONLY.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Gilroy font - using local files for better Safari compatibility */
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/gilroy/Gilroy-Regular.woff2') format('woff2'),
+         url('../fonts/gilroy/Gilroy-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/gilroy/Gilroy-RegularItalic.woff2') format('woff2'),
+         url('../fonts/gilroy/Gilroy-RegularItalic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/gilroy/Gilroy-SemiBold.woff2') format('woff2'),
+         url('../fonts/gilroy/Gilroy-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/gilroy/Gilroy-Bold.woff2') format('woff2'),
+         url('../fonts/gilroy/Gilroy-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-black: #000000;
+    --primary-red: #FF0000;
+    --primary-white: #FFFFFF;
+    --gray-light: #F5F5F5;
+    --gray-medium: #CCCCCC;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+body {
+    font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    color: var(--primary-black);
+    background-color: var(--primary-white);
+    line-height: 1.3;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+    height: 100%;
+    /* Hide scrollbar on Windows while keeping functionality */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+/* Hide scrollbar on Windows Chrome/Edge */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== PAGE SLIDER SYSTEM ===== */
+.pages-wrapper {
+    height: 100%;
+    overflow: visible;
+    /* Remove scroll from wrapper to prevent double scrollbar */
+}
+
+body:has(.page) {
+    scroll-snap-type: y mandatory;
+}
+
+.page {
+    min-height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== COVER PAGE (index.html) ===== */
+.cover-page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.svg-container {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--primary-white);
+}
+
+.cover-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.cover-svg-mobile {
+    display: none;
+}
+
+.cover-svg-desktop {
+    display: block;
+}
+
+.header-overlay {
+    position: relative;
+    width: 100%;
+    padding: 1% 0;
+    z-index: 10;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.header-overlay .header-content {
+    padding: 0 1%;
+    box-sizing: border-box;
+    width: 100%;
+    pointer-events: auto;
+}
+
+.header-overlay .header-item {
+    color: var(--primary-black);
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.header {
+    padding: 30px 50px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cover-page .header-content {
+    max-width: 100%;
+    margin: 0;
+}
+
+.cover-page .header-content {
+    align-items: baseline;
+}
+
+.header-item {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.header-item > span {
+    line-height: 1.2;
+    display: block;
+}
+
+.header-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    line-height: 1.2;
+    display: block;
+}
+
+.header-link:hover {
+    opacity: 0.7;
+}
+
+.header-item.header-left {
+    align-items: flex-start;
+}
+
+.header-item.header-center {
+    align-items: center;
+}
+
+.header-item.header-right {
+    align-items: flex-end;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.qr-codes {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.header .qr-codes {
+    margin-top: 15px;
+}
+
+.main-content .qr-codes {
+    margin-bottom: 60px;
+}
+
+.qr-code {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+
+.qr-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.middle-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 80px;
+    padding: 0 50px;
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 40px;
+}
+
+.professional-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.professional-titles h2 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 600; /* Semibold */
+    font-size: 42px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.professional-titles .year {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 600; /* Semibold */
+    font-size: 42px;
+    margin-top: 10px;
+}
+
+.name-section {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 40px;
+}
+
+.name-section .surname,
+.name-section .first-name {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 600; /* Semibold */
+    font-size: 42px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.portfolio-title {
+    position: relative;
+    margin-top: auto;
+    padding: 0;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+
+.main-title {
+    font-family: 'ST Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(60px, 12vw, 180px);
+    letter-spacing: -0.06em; /* -6% кернинг */
+    line-height: 0.85;
+    text-transform: uppercase;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    word-spacing: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.smm-overlay {
+    position: absolute;
+    font-family: 'BaystarScript', cursive;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 500;
+    color: var(--primary-red);
+    transform: rotate(-15deg);
+    top: -10px;
+    left: 75%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.footer {
+    padding: 30px 50px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.scroll-indicator {
+    display: none;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== RESUME PAGE (resume.html) ===== */
+.resume-page {
+    position: relative;
+    padding: 1% 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.resume-header {
+    display: grid;
+    grid-template-columns: 20% 27% 27% 20%;
+    gap: 2%;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.resume-header .section-title {
+    margin-bottom: 0;
+}
+
+.resume-header .section-title:first-child {
+    grid-column: 1;
+}
+
+.resume-header .section-title:last-child {
+    grid-column: 2 / 5;
+}
+
+.mobile-professional-title {
+    display: none; /* По умолчанию скрыт на десктопе */
+}
+
+.page-number {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 42px;
+    color: var(--primary-black);
+    opacity: 0.5;
+    z-index: 100;
+}
+
+.resume-container {
+    display: grid;
+    grid-template-columns: 20% 27% 27% 20%;
+    gap: 2%;
+    width: 100%;
+    flex: 1;
+    min-height: calc(100vh - 60px);
+    align-items: start;
+    box-sizing: border-box;
+    padding: 0 1%;
+}
+
+.resume-container > * {
+    min-height: 0;
+}
+
+.about-me-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 100%;
+    overflow: hidden;
+    align-items: stretch;
+}
+
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-section h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.photo-placeholder {
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 20px;
+    box-sizing: border-box;
+    position: relative;
+    align-self: stretch;
+}
+
+.photo-image {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    box-sizing: border-box;
+    -webkit-object-fit: cover;
+    -webkit-object-position: center top;
+}
+
+
+.skills-col-2,
+.skills-col-3 {
+    margin-top: 0;
+}
+
+.skills-col-1,
+.skills-col-2,
+.skills-col-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skills-col-1 {
+    grid-column: 2;
+}
+
+.skills-col-2 {
+    grid-column: 3;
+}
+
+.skills-col-3 {
+    grid-column: 4;
+}
+
+.section-title {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 48px;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.about-section h3 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 24px;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.about-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-section li {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 3px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.about-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.experience-block,
+.skills-block {
+    margin-bottom: 8px;
+}
+
+.experience-block h3,
+.skills-block h3 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 24px;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.job-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.job-list li {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.job-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.job-list .company-name {
+    font-weight: 400;
+}
+
+.job-list .job-label {
+    font-weight: 700;
+}
+
+.job-list .job-position {
+    font-weight: 400;
+}
+
+.job-list .job-period {
+    font-weight: 700;
+    color: #000;
+}
+
+.skills-block ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skills-block li {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 3px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.skills-block li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.tools-section {
+    margin-top: 12px;
+}
+
+.tools-section h3 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 24px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 12px;
+    justify-content: start;
+}
+
+.tool-icon {
+    aspect-ratio: 1;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    padding: 0;
+    background: none;
+}
+
+.tool-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+
+.social-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-section h3 {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-black);
+    text-decoration: none;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover {
+    opacity: 0.7;
+}
+
+.social-link svg {
+    flex-shrink: 0;
+}
+
+.qr-codes-resume {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+}
+
+.qr-codes-resume .qr-code {
+    flex: 1;
+    aspect-ratio: 1;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .main-title {
+        font-size: 120px;
+    }
+    
+    .smm-overlay {
+        font-size: 50px;
+        left: 75%;
+    }
+    
+    .resume-container {
+        grid-template-columns: 20% 27% 27% 20%;
+        gap: 2%;
+        padding: 0 1%;
+    }
+}
+
+@media (max-width: 968px) {
+    .cover-svg-desktop {
+        display: none;
+    }
+    
+    .cover-svg-mobile {
+        display: block;
+    }
+    
+    .resume-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .resume-header .section-title:first-child {
+        order: 2;
+        font-size: 28px; /* Уменьшаем размер заголовка "ОБО МНЕ" на мобилке */
+    }
+    
+    .resume-header .section-title:last-child {
+        display: none; /* Скрываем "ПРОФЕССИОНАЛЬНЫЕ НАВЫКИ" из заголовка на мобилке */
+    }
+    
+    .mobile-professional-title {
+        display: block !important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 28px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .main-title {
+        font-size: 100px;
+        letter-spacing: -0.06em;
+    }
+    
+    .smm-overlay {
+        font-size: 50px;
+        left: 75%;
+        top: -10px;
+    }
+    
+    .middle-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .name-section {
+        text-align: left;
+    }
+    
+    .resume-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 1%;
+    }
+    
+    .about-me-column,
+    .skills-col-1,
+    .skills-col-2,
+    .skills-col-3 {
+        grid-column: 1;
+    }
+    
+    .skills-col-2,
+    .skills-col-3 {
+        margin-top: 0;
+    }
+    
+    .photo-placeholder {
+        min-height: 400px;
+        position: relative;
+        top: 0;
+    }
+    
+    .header-item {
+        align-items: center;
+    }
+    
+    .header-item.header-left,
+    .header-item.header-right {
+        align-items: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-number {
+        display: none;
+    }
+    
+    .resume-page {
+        padding: 1% 1%;
+    }
+    
+    .main-title {
+        font-size: 60px;
+        letter-spacing: -0.06em;
+    }
+    
+    .smm-overlay {
+        font-size: 35px;
+        left: 75%;
+        top: -5px;
+    }
+    
+    .name-section .surname,
+    .name-section .first-name {
+        font-size: 32px;
+    }
+    
+    .professional-titles h2 {
+        font-size: 32px;
+    }
+    
+    .qr-codes {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .section-title {
+        font-size: 34px;
+    }
+    
+    /* Еще больше уменьшаем заголовки "ОБО МНЕ" и "ПРОФЕССИОНАЛЬНЫЕ НАВЫКИ" на маленьких экранах */
+    .resume-header .section-title:first-child {
+        font-size: 24px;
+    }
+    
+    .mobile-professional-title {
+        font-size: 24px;
+    }
+    
+    .tools-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tools-grid {
+        grid-template-columns: repeat(3, auto);
+        gap: 8px;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    .tool-icon {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .qr-codes-resume {
+        gap: 8px;
+        justify-content: center;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.page.active > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page > .page-number {
+    opacity: 0.5 !important; /* Номера страниц всегда на 50% прозрачны */
+}
+
+/* ===== PORTFOLIO PAGE ===== */
+.portfolio-page {
+    position: relative;
+    padding: 1% 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: 20% 27% 27% 20%;
+    column-gap: 2%;
+    row-gap: 0;
+    width: 100%;
+    padding: 0 1%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+/* 3-й слайд: строка с видео и текстом занимает остаток высоты для вертикального центрирования */
+.portfolio-page.slide-with-video .portfolio-container {
+    grid-template-rows: auto 1fr;
+}
+
+/* Заголовок в сетке портфолио — сбрасываем full-bleed из общего .portfolio-title */
+.portfolio-container .portfolio-title {
+    grid-column: 1;
+    grid-row: 1;
+    width: auto;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    text-align: left;
+    margin-bottom: 4px;
+    font-size: 48px;
+    text-transform: uppercase;
+    padding-left: 0;
+    overflow-x: visible;
+}
+
+/* Контент слайдов на всю ширину сетки (как на скрине 2) */
+.portfolio-container .slide-layout,
+.portfolio-container .slide-photos-row,
+.portfolio-container .slide-text-below,
+.portfolio-container .sarmat-image-wrap,
+.portfolio-container .slide-text-block,
+.portfolio-container .slide-text-full,
+.portfolio-container .examples-heading,
+.portfolio-container .portfolio-grid,
+.portfolio-container .education-list,
+.portfolio-container .companies-list {
+    grid-column: 1 / -1;
+}
+
+/* Слайд 3: ряд из 3 квадратных фото, под ними текст */
+.slide-photos-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.slide-photo-item {
+    width: calc((100% - 48px) / 3);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    flex: 0 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.slide-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slide-text-below {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.slide-text-below .skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 21px;
+    line-height: 1.4;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.slide-text-below .slide-text-left {
+    text-align: left;
+}
+
+.slide-text-below .slide-text-left li {
+    margin-bottom: 12px;
+    padding-left: 24px;
+    position: relative;
+}
+
+.slide-text-below .slide-text-left li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+}
+
+.slide-text-below .slide-text-right {
+    text-align: left;
+}
+
+.slide-text-below .slide-text-right li {
+    margin-bottom: 12px;
+    padding-left: 24px;
+    position: relative;
+}
+
+.slide-text-below .slide-text-right li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+}
+
+/* Слайд с видео 9:16 слева и текстом справа — ширина видео как одна картинка с 4-го слайда */
+.slide-layout.video-left {
+    display: grid;
+    grid-template-columns: minmax(0, calc((100% - 60px) / 3)) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    min-height: 0;
+}
+
+.slide-video-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.video-placeholder.ratio-9-16 {
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    max-width: 100%;
+    background: var(--gray-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    color: var(--gray-medium);
+}
+
+.slide-text-area .skills-list,
+.slide-text-block .skills-list {
+    list-style: none;
+    padding-left: 0;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.slide-text-area .skills-list li,
+.slide-text-block .skills-list li {
+    margin-bottom: 12px;
+    padding-left: 24px;
+    position: relative;
+}
+
+.slide-text-area .skills-list li::before,
+.slide-text-block .skills-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+}
+
+.slide-text-block {
+    margin-bottom: 4px;
+}
+
+.slide-text-full .slide-paragraph {
+    font-family: 'Gilroy', sans-serif;
+    font-size: 21px;
+    line-height: 1.5;
+    max-width: 900px;
+}
+
+/* Слайд Сармат: горизонтальное фото сверху, текст снизу */
+.sarmat-image-wrap {
+    margin-bottom: 20px;
+}
+
+.sarmat-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.examples-heading {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.education-list {
+    font-family: 'Gilroy', sans-serif;
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    padding-left: 24px;
+}
+
+.education-list li {
+    margin-bottom: 8px;
+}
+
+/* Слайд «Компании» */
+.companies-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 24px;
+    margin: 0 0 24px 0;
+    padding: 0;
+}
+
+.companies-list li {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.3;
+    background: var(--gray-light);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.company-tag {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.portfolio-item {
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--gray-light);
+}
+
+/* ПК: картинки и видео чуть меньше, от надписи «Примеры моих работ» до низа экрана, фиксированный отступ, центрирование */
+@media (min-width: 969px) {
+    .video-placeholder.ratio-9-16 {
+        max-height: calc(100vh - 320px);
+        width: auto;
+        max-width: none;
+        aspect-ratio: 9 / 16;
+    }
+
+    .portfolio-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .portfolio-item {
+        width: calc((100% - 4 * 24px) / 5);
+        flex: 0 0 auto;
+        aspect-ratio: 9 / 16;
+    }
+}
+
+.portfolio-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 24px;
+    color: var(--gray-medium);
+}
+
+/* Reels: видео в ячейке сетки (превью без звука) */
+.portfolio-item-video {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-item-video .reels-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Сторис: картинка в ячейке, по клику — полноэкран */
+.portfolio-item-image {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.portfolio-item-image .stories-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-modal .image-modal-img {
+    max-width: 100%;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.image-modal .video-modal-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+/* Модальное окно: видео на весь экран со звуком */
+.video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.video-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+.video-modal-inner {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.video-modal-player {
+    max-width: 100%;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background: #000;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 2;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 968px) {
+    .portfolio-container {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-title {
+        grid-column: 1;
+    }
+
+    .slide-layout.video-left {
+        grid-template-columns: 1fr;
+    }
+
+    .video-placeholder.ratio-9-16 {
+        max-width: 220px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .slide-photo-item {
+        width: calc((100% - 24px) / 2);
+    }
+
+    .slide-text-below .skills-list {
+        flex: 1 1 100%;
+    }
+
+    .companies-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-title {
+        font-size: 28px;
+    }
+
+    .slide-text-area .skills-list li,
+    .slide-text-block .skills-list li,
+    .slide-text-below .skills-list li {
+        font-size: 18px;
+    }
+
+    .slide-photo-item {
+        width: 100%;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .companies-list {
+        grid-template-columns: 1fr;
+    }
+
+    .companies-list li {
+        font-size: 19px;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .footer,
+    .scroll-indicator {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .page {
+        page-break-after: always;
+    }
+}
