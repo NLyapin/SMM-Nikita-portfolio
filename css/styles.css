@@ -1246,6 +1246,14 @@ body:has(.page) {
     gap: 4px;
 }
 
+.company-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-red);
+    margin-bottom: 6px;
+    flex-shrink: 0;
+}
+
 .company-tag {
     font-family: 'Gilroy', sans-serif;
     font-weight: 500;
